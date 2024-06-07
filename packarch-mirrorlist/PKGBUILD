@@ -1,0 +1,15 @@
+# Maintainer: Aditya Shakya <adi1090x@gmail.com>
+
+pkgname="packarch-mirrorlist"
+pkgver=2.0
+pkgrel=2
+pkgdesc='Packarch mirrorlist'
+arch=('any')
+url="https://github.com/packarch-os/core-packages"
+license=('GPL3')
+source=("$pkgname")
+sha512sums=('b56cc8017d8b1d31435f476dc85570121b761ab3b48a31438cda555b6ec2d9bbba366252907ff7f9f4b111c7fa09d77686b487b7691dcc67174f398ccfae9ea8')
+
+package() {
+	install -Dm 644 "$pkgname"  "$pkgdir"/etc/pacman.d/"$pkgname"
+}

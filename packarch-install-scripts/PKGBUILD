@@ -1,0 +1,32 @@
+# Maintainer: Aditya Shakya <@adi1090x>
+
+pkgname=packarch-install-scripts
+pkgver=3.0
+pkgrel=0
+pkgdesc='Packarch Install Scripts'
+arch=('any')
+url="https://github.com/packarch-os/core-packages"
+license=('GPL3')
+source=('chrooted_autologin.sh'
+		'chrooted_desktop.sh'
+		'chrooted_post_install.sh'
+		'chrooted_post_install_nvidia.sh'
+		'post_install.sh'
+		'post_install_nvidia.sh')
+sha512sums=('98cf72bb034fa233c79accdb72e5ff658bb56996c81233d8d989333b62148e0f16c2926d4dca55039c7c21a9212092b480c03629ae6a22a0458600bb258bd6df'
+            'bd4c3b21fceca427231fb64683484ea6f1623d1afee7e188b2e59a69bdc926dec9aea0c90a02191a4443afa2d6f347753764e01d78c609ba2935197436f06401'
+            '89ca0e319f653f2bfd41c3c6568107024fa98c0c83cfaa847ab66661a76331a0c0b047ff687c1a12ef25d4e13e60f7fe9b5204124ab39288fdd906466ecd8a64'
+            '4d3e2314d4539babc20be952360dc8c1cba8ebadcbd4ab5a9fab00ff56a0b0da2e139cade2913adf4065c2cddbe6dd7a1baf56f3f21df2423155c853451f41cf'
+            '9d0c860d6f4bc75c38ff470166741bccff0292aae856b583d2c6b1370f1d62ee7157b5e8c53dd82852afddd7cb9d79f1d099f2ffefa438510921ee2dc707c008'
+            '469fb19a0d54add3e817a8a8f0558a072fbfdbdb4c9d414cbbaa34e6372b701bc5408499902cf7e04f938026478eb85356ef70962da862f71448e141d497c7c8')
+
+package() {
+	local bin="$pkgdir"/usr/bin
+	
+	install -Dm 755 chrooted_autologin.sh 			"$bin"/chrooted_autologin.sh
+	install -Dm 755 chrooted_desktop.sh 			"$bin"/chrooted_desktop.sh
+	install -Dm 755 chrooted_post_install.sh 		"$bin"/chrooted_post_install.sh
+	install -Dm 755 chrooted_post_install_nvidia.sh "$bin"/chrooted_post_install_nvidia.sh
+	install -Dm 755 post_install.sh 				"$bin"/post_install.sh
+	install -Dm 755 post_install_nvidia.sh 			"$bin"/post_install_nvidia.sh
+}

@@ -1,0 +1,20 @@
+# Maintainer: Aditya Shakya <adi1090x@gmail.com>
+
+pkgname=packarch-sddm-theme
+pkgver=1.0
+pkgrel=6
+pkgdesc="Default sddm theme for Packarch"
+arch=('any')
+url="https://github.com/packarch-os/extra-packages"
+license=('GPL3')
+depends=('sddm' 'qt5-declarative' 'qt5-graphicaleffects' 'qt5-quickcontrols2' 'qt5-svg')
+groups=(packarch-sddm-themes)
+options=(!strip !emptydirs)
+
+prepare() {
+	cp -af ../files/. "$srcdir"
+}
+
+package() {
+	(find packarch -type f -exec install -Dm 644 "{}" "$pkgdir/usr/share/sddm/themes/{}" \;)
+}

@@ -1,0 +1,18 @@
+# Maintainer: Aditya Shakya <adi1090x@gmail.com>
+
+pkgname="packarch-hooks-zsh"
+pkgver=1.0
+pkgrel=2
+pkgdesc='ZSH hook for Packarch'
+arch=('any')
+url="https://github.com/packarch-os/core-packages"
+license=('GPL3')
+
+source=('packarch-hook-zsh.hook')
+sha512sums=('439ad01f194deed08d6348430c791d767ddf6cc423153c495593c56eb6284dcb94b97e3ad2eb0f0a4663c05e495d8752ba79eeed8a08d92e30228acf7f10173c')
+
+package() {
+  local hooks="$pkgdir"/usr/share/libalpm/hooks
+
+  install -Dm 644 packarch-hook-zsh.hook "$hooks"/packarch-hook-zsh.hook
+}

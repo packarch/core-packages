@@ -1,0 +1,59 @@
+# Maintainer: Aditya Shakya <adi1090x@gmail.com>
+
+pkgname="packarch-hooks"
+pkgver=2.0
+pkgrel=3
+pkgdesc='Pacman hooks for Packarch filesystem'
+arch=('any')
+url="https://github.com/packarch-os/core-packages"
+license=('GPL3')
+source=(
+		'packarch-hooks.hook'
+		'packarch-os-release.hook'
+		'packarch-lsb-release.hook'
+		'packarch-pixmaps.hook'
+		'packarch-reboot-required.hook'
+		'packarch-hooks-runner'
+		'packarch-reboot-required'
+		'packarch.png'
+		'packarch.svg'
+		'packarch-logo.png'
+		'packarch-logo.svg'
+		'packarch-user.png'
+		'packarch-user.svg'
+)
+sha512sums=('f3cd662cab090d2402fcdeff398d274837e3cc7a5d07ff5318472755a87e8a9bfae2ba378accd03fe3d142fab282721324e65c2d6e38e41afdb0bdccb38d9ebc'
+            '6684c635781441b8a3aca0cd90e1553223117c3914325f9e9d02dc9b70211e7fe344ed0f35d2ddc0b5daca0989c6df382b5a6df3cbbe415f2171d529b39af9e9'
+            '646045e6586ebc85c2b523350f02eb7bc9232e24f0776d0bd9b17f2da25573b61bd7900f2f74305441be9c774b5fd18c15719f2a11decacdacf4f3e06b7ef2ee'
+            '1a7188e1ebb607c4b585eda698c35188344fd34fdd7ea25eafb7cd7494359055d046b3c7de8b11cfc733655ec9d5a18a3fc88c1a65397c9fd9ee42f4a7c5c621'
+            '93b2ae81942479108386f25b4372751c23c1f8200487573d25940c92ae6fca6a0f7be2534ce2cd44f30fe781b2616b9c1f3a5f700e175c206d6c79e0461f134d'
+            '42ee876ad3638d9f4b64ebaee8bd10e3f6c735f454a39acc54659556151f7e1c9d00afc66443a1a82f6e27fbe02b99ed03dc38cfbf2db75227c07f38d7821af2'
+            'eb490c28b236d72662711f1c9660a5d7d0a7d9b516e67fb3b53587c5517497bbd238b49df32fbe7876722d2604952488269e6c1d899b4837c870ec45abec3157'
+            '34ca68054ae537fda636a4613489ca69a88f6b2c2e0e440c535ada47ebed4015f7b751232e30ef5c2c0173a4db7ae0f7e208bcff30d21ca6f3ba6821229be755'
+            '44982dbe314b0f5648ff7bb02bfe05f7edbd1d8a4fd3b3bc580c5f3f9d93bacf5822e5f8e3c24478c17f1004a6fae06339c87fd411e9eebf53e6ee8361e85b2f'
+            'c860b21db8f7574bca349d50e8f0cc53cb92ee10bb69982c13705e031649f64cb86e13e66a229948b7f0f4ff415dc096a35fc2373c63fd0ebd4c85835333710a'
+            '248d2fb8dbfa43f4548734e0a25765e0dbc2deefdde6f506c03a3f5df92fc4936448d021a7d9e84779497eae6acdc1c8f6ba43797b307eac5b74e8362b0d3a3e'
+            'b7040fac592400a2ea276f39e09df6845f5ca056174078d8f99dc8a62393ca51176ff92521e6a95031387829681620ce62b1a1a02b48a6d15116e8a62dcd660d'
+            '3d4d3cba0d7bd2972970c4a1010852cb1c77b7a48b2fe854451c029563a631b455c8c366d1d46e967cfcd7c56962ab527c795eb09bc0527bc82f493557df210e')
+
+package() {
+	local hooks="$pkgdir"/usr/share/libalpm/hooks
+	local pixmaps="$pkgdir"/usr/share/pixmaps
+	local bin="$pkgdir"/usr/bin
+	
+	install -Dm 644 packarch-hooks.hook           	"$hooks"/packarch-hooks.hook
+	install -Dm 644 packarch-lsb-release.hook      "$hooks"/packarch-lsb-release.hook
+	install -Dm 644 packarch-os-release.hook       "$hooks"/packarch-os-release.hook
+	install -Dm 644 packarch-reboot-required.hook  "$hooks"/packarch-reboot-required.hook
+	install -Dm 644 packarch-pixmaps.hook  		"$hooks"/packarch-pixmaps.hook
+			    
+	install -Dm 755 packarch-hooks-runner         	"$bin"/packarch-hooks-runner
+	install -Dm 755 packarch-reboot-required       "$bin"/packarch-reboot-required
+			    
+	install -Dm 644 packarch.png       			"$pixmaps"/packarch.png
+	install -Dm 644 packarch.svg       			"$pixmaps"/packarch.svg
+	install -Dm 644 packarch-logo.png       		"$pixmaps"/packarch-logo.png
+	install -Dm 644 packarch-logo.svg       		"$pixmaps"/packarch-logo.svg
+	install -Dm 644 packarch-user.png       		"$pixmaps"/packarch-user.png
+	install -Dm 644 packarch-user.svg       		"$pixmaps"/packarch-user.svg
+}

@@ -1,0 +1,12 @@
+## Copyright (C) 2020-2024 Aditya Shakya <adi1090x@gmail.com>
+
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = qtile
+
+[Action]
+Description = Deleting Qtile (Wayland) Desktop file...
+When = PostTransaction
+Exec = /usr/bin/rm -r -f /usr/share/wayland-sessions/qtile-wayland.desktop

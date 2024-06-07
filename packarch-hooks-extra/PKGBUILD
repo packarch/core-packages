@@ -1,0 +1,39 @@
+# Maintainer: Aditya Shakya <adi1090x@gmail.com>
+
+pkgname="packarch-hooks-extra"
+pkgver=2.0
+pkgrel=7
+pkgdesc='Extra pacman hooks for Packarch'
+arch=('any')
+url="https://github.com/packarch-os/core-packages"
+license=('GPL3')
+source=(
+		'packarch-hook-i3wm.hook'
+		'packarch-hook-nm.hook'
+		'packarch-hook-openbox.hook'
+		'packarch-hook-qtile.hook'
+		'packarch-hook-thunar.hook'
+		'packarch-hook-xfce-notifyd.hook'
+		'packarch-hooks-extra'
+)
+sha512sums=('55d0a2744a719d2d425eadef1622c1ac68717a73d4f6022315fa43d168330589c9648aff67fc8262e123a25363ba70d1117d50bf787bda86b120d8f83d95d515'
+            '2e386d677184c5ce24264c5243d7325106bc11e7ad069287fb383e7d733f182568b7fb5d5be3d86fe517514ba6f8792238625426f485e1faded8cc3fe944d22c'
+            'fb06ca6b042ff7953871bdf9712e41a65ee71b977863a2a619b76670382264fe1c3a94abf1c78c91c8902525dbf22d1d14ca625244d91c9293f6f75f058068a2'
+            '57b125b49f2319696fd2548c88fae91467be7cbeb23b1e44999ab38ce21c22a4f322fc871bfc0fd05dd87ae96a7ad55ae29c24c3d70df041d2ea5200e3012628'
+            'b8bb0fefb2193cbfd2d12c2777060dfa88fb0e19d8e535f2f47cb906d6948dd8d8bdb0280c875215235b897eaa974db523b9f6c942c4ee561a5af613b1c22bc7'
+            '5f2597ae4944fb78da34fa60ea9700d3adfa3a363b35586e4a9283eef160834d2d726b64258724514043322ef001b673011fc4c440023fe2eea6bc86eac19066'
+            'edaca72be5d7189d7bdd6bce3cd6d4372eff1f2374d314bdce165dfef679071ff2ccaba0c806f65479b86dfd2db280b195252d5c15ca5d27516bcede769cb5a4')
+
+package() {
+  local hooks="$pkgdir"/usr/share/libalpm/hooks
+  local bin="$pkgdir"/usr/bin
+
+  install -Dm 644 packarch-hook-i3wm.hook  		"$hooks"/packarch-hook-i3wm.hook
+  install -Dm 644 packarch-hook-nm.hook  			"$hooks"/packarch-hook-nm.hook
+  install -Dm 644 packarch-hook-openbox.hook  		"$hooks"/packarch-hook-openbox.hook
+  install -Dm 644 packarch-hook-qtile.hook  		"$hooks"/packarch-hook-qtile.hook
+  install -Dm 644 packarch-hook-thunar.hook  		"$hooks"/packarch-hook-thunar.hook
+  install -Dm 644 packarch-hook-xfce-notifyd.hook  "$hooks"/packarch-hook-xfce-notifyd.hook
+			  
+  install -Dm 755 packarch-hooks-extra       		"$bin"/packarch-hooks-extra
+}
