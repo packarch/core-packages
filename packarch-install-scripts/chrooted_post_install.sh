@@ -265,6 +265,7 @@ _clean_target_system() {
 		rm -rf ${dfile}
 	done
     find /usr/lib/initcpio -name archiso* -type f -exec rm '{}' \;
+    sed -i -e 's|%wheel ALL=(ALL) ALL|%wheel  ALL=(ALL) NOPASSWD: ALL|g' /etc/sudoers.d/10-installer
 }
 
 ## -------- Perform Misc Operations --------------
