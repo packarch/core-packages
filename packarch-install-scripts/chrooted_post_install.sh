@@ -36,7 +36,8 @@ _manage_systemd_services() {
 							'cups.service'
 							'avahi-daemon.service'
 							'systemd-timesyncd.service'
-							'sddm-plymouth.service')
+							'lightdm.service'
+							'autofs.service')
 	local _snapd_services=('apparmor.service'
 						   'snapd.apparmor.service'
 						   'snapd.socket')
@@ -206,7 +207,6 @@ _remove_unwanted_ucode() {
 _remove_unwanted_packages() {
     local _packages_to_remove=('packarch-install-scripts'
 							   'packarch-installer'
-							   'packarch-welcome'
 							   'calamares-config'
 							   'calamares'
 							   'archinstall'
