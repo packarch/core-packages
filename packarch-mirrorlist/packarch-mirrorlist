@@ -1,4 +1,4 @@
 ############### Packarch Mirrorlist ###############
 
 ## Worldwide (Github)
-Server = https://packages.packarch.io/pkgs/$arch
+Server = https://packarch.github.io/pkgs/$arch
