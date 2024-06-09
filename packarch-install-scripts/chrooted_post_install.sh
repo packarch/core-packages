@@ -272,12 +272,6 @@ _clean_target_system() {
 
 _perform_various_stuff() {
 
-	# Copy grub theme to boot directory
-	echo "+---------------------->>"
-	echo "[*] Copying grub theme to boot directory..."
-	mkdir -p /boot/grub/themes
-	cp -rf /usr/share/grub/themes/packarch /boot/grub/themes
-
 	# disabling autologin for lightdm (if exist)
 	lightdm_config='/etc/lightdm/lightdm.conf'
 	if [[ -e "$lightdm_config" ]]; then

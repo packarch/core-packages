@@ -55,7 +55,7 @@ _enable_nvidia() {
 			# Add kernel parameter in `/etc/default/grub` file
 			echo "+---------------------->>"
 			echo "[*] Adding Nvidia Kernel Parameter in '/etc/default/grub' file..."
-			sed -i -e 's|GRUB_CMDLINE_LINUX_DEFAULT="quiet splash|GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nvidia_drm.modeset=1|g' /etc/default/grub
+			sed -i -e 's|GRUB_CMDLINE_LINUX_DEFAULT="quiet splash|GRUB_CMDLINE_LINUX_DEFAULT="nvidia_drm.modeset=1|g' /etc/default/grub
 		fi
 	fi
 }
