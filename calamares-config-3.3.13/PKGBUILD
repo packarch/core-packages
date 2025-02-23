@@ -1,11 +1,11 @@
 # Maintainer: Aditya Shakya <adi1090x@gmail.com>
 
 pkgname=calamares-config
-pkgver=3.0
-pkgrel=7
+pkgver=4.0
+pkgrel=0
 pkgdesc="Calamares configuration for Packarch."
 arch=('any')
-url="https://github.com/packarch-os/core-packages"
+url="https://github.com/archcraft-os/core-packages"
 license=('GPL')
 
 prepare() {

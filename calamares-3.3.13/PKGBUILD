@@ -2,9 +2,8 @@
 #change prepare number too
 
 pkgname=calamares
-_pkgname=calamares
-pkgver=3.3.6
-pkgrel=02
+pkgver=3.3.13
+pkgrel=0
 pkgdesc='Distribution-independent installer framework'
 arch=('i686' 'x86_64')
 license=(GPL)
@@ -56,34 +55,30 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/initcpio.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
-source=("calamares::https://github.com/erikdubois/calamares/archive/refs/tags/$pkgver-$pkgrel.tar.gz"
+source=("calamares::https://github.com/calamares/calamares/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.gz"
 	    "49-nopasswd-calamares.rules")
 
-sha256sums=('dd27344d3bd6e5a1e514b8cb297bf14d832dba45ae9f908aa622ad243ca57081'
+sha256sums=('e49cf7d894e02ba04898cd0770cb578b4e24dfd0808ab7660bf95bb2456648d4'
             '56d85ff6bf860b9559b8c9f997ad9b1002f3fccc782073760eca505e3bddd176')
 
 prepare() {
 
-	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' "$srcdir/${_pkgname}-${pkgver}-${pkgrel}/CMakeLists.txt"
-	sed -i -e "s/desired_size = 512 \* 1024 \* 1024  \# 512MiB/desired_size = 512 \* 1024 \* 1024 \* 4  \# 2048MiB/" "$srcdir/${_pkgname}-${pkgver}-${pkgrel}/src/modules/fstab/main.py"
+	sed -i -e 's/"Install configuration files" OFF/"Install configuration files" ON/' "$srcdir/${pkgname}-${pkgver}/CMakeLists.txt"
+	sed -i -e "s/desired_size = 512 \* 1024 \* 1024  \# 512MiB/desired_size = 512 \* 1024 \* 1024 \* 4  \# 2048MiB/" "$srcdir/${pkgname}-${pkgver}/src/modules/fstab/main.py"
 
 	# modify desktop file for Packarch
-	sed -i -e 's#Exec=sh.*#Exec=sh -c "/etc/calamares/launch.sh"#g' "$srcdir/${_pkgname}-${pkgver}-${pkgrel}/calamares.desktop"
-	sed -i -e 's#Name=.*#Name=Install Packarch#g' "$srcdir/${_pkgname}-${pkgver}-${pkgrel}/calamares.desktop"
-	sed -i -e 's#GenericName=.*#GenericName=System Installer#g' "$srcdir/${_pkgname}-${pkgver}-${pkgrel}/calamares.desktop"
-	sed -i -e 's#Icon=.*#Icon=packarch-green#g' "$srcdir/${_pkgname}-${pkgver}-${pkgrel}/calamares.desktop"
-	sed -i -e 's#Comment=.*#Comment=Packarch System Installer#g' "$srcdir/${_pkgname}-${pkgver}-${pkgrel}/calamares.desktop"
+	sed -i -e 's#Exec=sh.*#Exec=sh -c "/etc/calamares/launch.sh"#g' "$srcdir/${pkgname}-${pkgver}/calamares.desktop"
+	sed -i -e 's#Name=.*#Name=Install Packarch#g' "$srcdir/${pkgname}-${pkgver}/calamares.desktop"
+	sed -i -e 's#GenericName=.*#GenericName=System Installer#g' "$srcdir/${pkgname}-${pkgver}/calamares.desktop"
+	sed -i -e 's#Icon=.*#Icon=packarch-green#g' "$srcdir/${pkgname}-${pkgver}/calamares.desktop"
+	sed -i -e 's#Comment=.*#Comment=Packarch System Installer#g' "$srcdir/${pkgname}-${pkgver}/calamares.desktop"
 
-	# temporary fix for sddm autologin issue in 3.3.6
-	sed -i -e 's|configuration_file = .*|configuration_file = "/etc/sddm.conf"|g' "$srcdir/${_pkgname}-${pkgver}-${pkgrel}/src/modules/displaymanager/main.py"
-	sed -i -e "s|self.configuration_file|self.configuration_file.lstrip('/')|g"   "$srcdir/${_pkgname}-${pkgver}-${pkgrel}/src/modules/displaymanager/main.py"
-
-	cd ${_pkgname}-${pkgver}-${pkgrel}
-	sed -i -e "s|CALAMARES_VERSION 3.3.5|CALAMARES_VERSION $pkgver-$pkgrel|g" CMakeLists.txt
+	cd ${pkgname}-${pkgver}
+	sed -i -e "s|CALAMARES_VERSION 3.3.5|CALAMARES_VERSION $pkgver|g" CMakeLists.txt
 }
 
 build() {
-	cd $_pkgname-$pkgver-${pkgrel}
+	cd ${pkgname}-${pkgver}
 
     cmake -S . -Bbuild \
         -GNinja \
@@ -120,7 +115,7 @@ build() {
 }
 
 package() {
-	cd ${_pkgname}-${pkgver}-${pkgrel}/build
+	cd ${pkgname}-${pkgver}/build
 	DESTDIR="${pkgdir}" cmake --build . --target install
 	install -Dm644 "${srcdir}/49-nopasswd-calamares.rules" "$pkgdir/etc/polkit-1/rules.d/49-nopasswd-calamares.rules"
 	chmod 750 "$pkgdir"/etc/polkit-1/rules.d
